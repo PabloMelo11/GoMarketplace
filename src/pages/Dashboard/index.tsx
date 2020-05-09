@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { View } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-
-import { View, Image } from 'react-native';
 
 import formatValue from '../../utils/formatValue';
 import { useCart } from '../../hooks/cart';
@@ -26,6 +25,7 @@ interface Product {
   title: string;
   image_url: string;
   price: number;
+  quantity: number;
 }
 
 const Dashboard: React.FC = () => {
@@ -45,10 +45,14 @@ const Dashboard: React.FC = () => {
 
   const handleAddToCart = useCallback(
     (item: Product): void => {
+      // TODO
       addToCart(item);
     },
     [addToCart],
   );
+  // function handleAddToCart(item: Product): void {
+  //   addToCart(item);
+  // }
 
   return (
     <Container>

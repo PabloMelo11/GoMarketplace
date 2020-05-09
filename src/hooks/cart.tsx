@@ -35,14 +35,12 @@ const CartProvider: React.FC = ({ children }) => {
       const response = await AsyncStorage.getItem(STORAGE_KEY);
 
       if (response) {
-        const storageProducts = [...JSON.parse(response)].sort(
-          (productA, productB) => {
-            if (productA.title > productB.title) {
-              return 1;
-            }
-            return productA.title < productB.title ? -1 : 0;
-          },
-        );
+        const storageProducts = [...JSON.parse(response)].sort((a, b) => {
+          if (a.title > b.title) {
+            return 1;
+          }
+          return a.title < b.title ? -1 : 0;
+        });
 
         setProducts(storageProducts);
       }
@@ -63,20 +61,20 @@ const CartProvider: React.FC = ({ children }) => {
         setProducts(
           products
             .map(prod => (prod.id === product.id ? newProductValue : prod))
-            .sort((productA, productB) => {
-              if (productA.title > productB.title) {
+            .sort((a, b) => {
+              if (a.title > b.title) {
                 return 1;
               }
-              return productA.title < productB.title ? -1 : 0;
+              return a.title < b.title ? -1 : 0;
             }),
         );
       } else {
         setProducts(
-          [...products, newProductValue].sort((productA, productB) => {
-            if (productA.title > productB.title) {
+          [...products, newProductValue].sort((a, b) => {
+            if (a.title > b.title) {
               return 1;
             }
-            return productA.title < productB.title ? -1 : 0;
+            return a.title < b.title ? -1 : 0;
           }),
         );
       }
@@ -94,11 +92,11 @@ const CartProvider: React.FC = ({ children }) => {
               ? { ...product, quantity: product.quantity + 1 }
               : product,
           )
-          .sort((productA, productB) => {
-            if (productA.title > productB.title) {
+          .sort((a, b) => {
+            if (a.title > b.title) {
               return 1;
             }
-            return productA.title < productB.title ? -1 : 0;
+            return a.title < b.title ? -1 : 0;
           }),
       );
 
@@ -117,11 +115,11 @@ const CartProvider: React.FC = ({ children }) => {
               : product,
           )
           .filter(product => product.quantity > 0)
-          .sort((productA, productB) => {
-            if (productA.title > productB.title) {
+          .sort((a, b) => {
+            if (a.title > b.title) {
               return 1;
             }
-            return productA.title < productB.title ? -1 : 0;
+            return a.title < b.title ? -1 : 0;
           }),
       );
 
